@@ -2,12 +2,12 @@
 
 require_once __DIR__ . '/../app/init.php';
 
-$routes = [
-    '' => 'HomeController@index',
-    'testing' => 'HomeController@index@testing',
-];
+require_once __DIR__ . '/../routes/web.php';
 
-if(array_key_exists('testing', $routes)) {
+$request = isset($_GET['url']) ? rtrim($_GET['url'], '/') : '';
+
+
+if(array_key_exists($request, $routes)) {
     echo "Letezik";
 } else {
     echo "Nem letezik";
