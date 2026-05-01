@@ -3,11 +3,14 @@
 class HomeController {
 
     public function index(){
-        return "Home nezet megjelenitese";
+        
+        $data = [
+            'title' => 'Fooldal',
+            'message' => 'Udvozollek a Fooldalon',
+        ];
+
+        render('home/index', $data);
     }
 
-    public function about(){
-        return "About nezet megjelenitese";
-    }
 
 }

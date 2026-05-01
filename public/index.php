@@ -8,7 +8,12 @@ $request = isset($_GET['url']) ? rtrim($_GET['url'], '/') : '';
 
 
 if(array_key_exists($request, $routes)) {
-    echo "Letezik";
+
+    $route = explode('@', $routes[$request]);
+    $controllerName = $route[0];
+    $methodName = $route[1];
+    $controller = new $controllerName();
+    $controller->$methodName();
 } else {
-    echo "Nem letezik";
+    echo "404 - Oldal nem található";
 }
