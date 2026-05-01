@@ -7,7 +7,9 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - .:/var/www/html
+      - .:/var/www
+    working_dir: /var/www/html/public
+    command: bash -c "rm -rf /var/www/html && ln -s /var/www/public /var/www/html && apache2-foreground"
     depends_on:
       - mysql
 
