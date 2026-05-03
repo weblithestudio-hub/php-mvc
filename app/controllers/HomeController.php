@@ -4,13 +4,26 @@ class HomeController {
 
     public function index(){
         
-        $data = [
-            'title' => 'Fooldal',
-            'message' => 'Udvozollek a Fooldalon',
-        ];
+        echo base_url();
 
-        render('home/index', $data);
+        //$data = [
+        //    'title' => 'Fooldal',
+        //    'message' => 'Udvozollek a Fooldalon',
+        //];
+
+        //render('home/index', $data, 'layouts/hero_layout');
     }
 
+    public function about(){
+        
+        echo base_url();
+
+        //$data = [
+        //    'title' => 'Rolunk',
+        //    'message' => 'Udvozollek a Rolunk szekcioban',
+        //];
+
+        //render('home/about', $data);
+    }
 
 }
