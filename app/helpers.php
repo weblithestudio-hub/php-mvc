@@ -31,6 +31,12 @@ function base_path($path = '') {
 }
 
 
+// return view system
+
+function views_path($path = '') {
+    return base_path('app/views/' . ltrim($path, '/'));
+}
+
 function render($view, $data = [], $layout = 'layout') {
 
     extract($data);
