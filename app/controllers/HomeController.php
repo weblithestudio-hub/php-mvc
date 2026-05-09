@@ -4,7 +4,7 @@ class HomeController {
 
     public function index(){
         
-        echo base_url();
+        echo base_path();
 
         //$data = [
         //    'title' => 'Fooldal',

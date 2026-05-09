@@ -24,6 +24,13 @@ function base_url($path = '') {
 
 }
 
+// file system restore
+
+function base_path($path = '') {
+    return realpath(__DIR__ . '/../' . ltrim($path, '/'));
+}
+
+
 function render($view, $data = [], $layout = 'layout') {
 
     extract($data);
