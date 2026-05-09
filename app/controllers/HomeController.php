@@ -4,8 +4,7 @@ class HomeController {
 
     public function index(){
         
-        echo base_path();
-
+        redirect("/about");
         //$data = [
         //    'title' => 'Fooldal',
         //    'message' => 'Udvozollek a Fooldalon',

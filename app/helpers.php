@@ -4,38 +4,47 @@
 
 function base_url($path = '') {
 
-    if(defined('BASE_URL')) {
+    if (defined('BASE_URL')) {
         return BASE_URL . ltrim($path, '/');
     }
 
-    // https:// or http://
-
-    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' )|| $_SERVER['SERVER_PORT'] == 443 ? "https://" : 'http://';
-
-    // example : google.com
+    $protocol = (
+        !empty($_SERVER['HTTPS']) &&
+        $_SERVER['HTTPS'] !== 'off'
+    ) ? 'https://' : 'http://';
 
     $host = $_SERVER['HTTP_HOST'];
 
-    // /blogs
-
-    $base = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
-
-    return $protocol . $host . $base . '/' . ltrim($path, '/');
-
+    return $protocol . $host . '/' . ltrim($path, '/');
 }
 
 // file system restore
 
 function base_path($path = '') {
-    return realpath(__DIR__ . '/../' . ltrim($path, '/'));
+    return realpath(__DIR__ . '/../') . ($path ? '/' . ltrim($path, '/') : '');
 }
 
 
 // return view system
 
 function views_path($path = '') {
-    return base_path('app/views/' . ltrim($path, '/'));
+    return base_path() . '/app/views/' . ltrim($path, '/');
 }
+
+// Redirects the user to a specified URL with optional query parameters.
+
+function redirect($path = '', $queryParams = []){
+    $url = base_url($path);
+
+    if(!empty($queryParams)) {
+        $url .= "?" . http_build_query($queryParams);
+    }
+
+    header("Location: " . $url);
+    exit();
+}
+
+// Renders a view file with optional data and layout support.
 
 function render($view, $data = [], $layout = 'layout') {
 
@@ -43,10 +52,21 @@ function render($view, $data = [], $layout = 'layout') {
 
     ob_start();
 
-    require __DIR__ . '/views/' . $view . '.php';
+    $viewFile = views_path($view . '.php');
+
+    if (!file_exists($viewFile)) {
+        die("View file not found: " . $viewFile);
+    }
+
+    require $viewFile;
 
     $content = ob_get_clean();
 
-    require __DIR__ . "/views/" . $layout . ".php";
+    $layoutFile = views_path($layout . '.php');
 
+    if (!file_exists($layoutFile)) {
+        die("Layout file not found: " . $layoutFile);
+    }
+
+    require $layoutFile;
 }
