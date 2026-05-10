@@ -4,25 +4,22 @@ class HomeController {
 
     public function index(){
         
-        redirect("/about");
-        //$data = [
-        //    'title' => 'Fooldal',
-        //    'message' => 'Udvozollek a Fooldalon',
-        //];
+        $data = [
+            'title' => 'Fooldal',
+            'message' => 'Udvozollek a Fooldalon',
+        ];
 
-        //render('home/index', $data, 'layouts/hero_layout');
+        render('home/index', $data, 'layouts/hero_layout');
     }
 
     public function about(){
-        
-        echo base_url();
 
-        //$data = [
-        //    'title' => 'Rolunk',
-        //    'message' => 'Udvozollek a Rolunk szekcioban',
-        //];
+        $data = [
+            'title' => 'Rolunk',
+            'message' => 'Udvozollek a Rolunk szekcioban',
+        ];
 
-        //render('home/about', $data);
+        render('home/about', $data);
     }
 
 }
