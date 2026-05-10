@@ -3,7 +3,11 @@
 class UserController {
 
     public function login() {
-        require_once __DIR__ . '/../views/user/login.php';
+        render('user/login');
+    }
+
+    public function register() {
+        render('user/register');
     }
 
 }

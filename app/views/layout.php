@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>CMS PDO System</title>
+
+
     <!-- Bootstrap CSS -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    
-    >
+        rel="stylesheet">
+
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -44,10 +45,10 @@
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Login</a>
+                        <a class="nav-link" href="<?php echo base_url('user/login'); ?>">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="register.html">Register</a>
+                        <a class="nav-link" href="<?php echo base_url('user/register'); ?>">Register</a>
                     </li>
                 </ul>
             </div>
