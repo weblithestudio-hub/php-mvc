@@ -5,6 +5,7 @@ require_once __DIR__ . '/../app/init.php';
 
 require_once __DIR__ . '/../routes/web.php';
 
+
 // $request = trim($_GET['url'] ?? '', '/');
 
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
