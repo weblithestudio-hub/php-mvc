@@ -5,23 +5,27 @@ require_once __DIR__ . '/../app/init.php';
 
 require_once __DIR__ . '/../routes/web.php';
 
-$request = trim($_GET['url'] ?? '', '/');
+// $request = trim($_GET['url'] ?? '', '/');
 
-// default route
-if ($request === '') {
-    $request = 'home';
-}
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-if (array_key_exists($request, $routes)) {
+$method = $_SERVER['REQUEST_METHOD'];
 
-    $route = explode('@', $routes[$request]);
+// // default route
+// if ($request === '') {
+//     $request = 'home';
+// }
 
-    $controllerName = $route[0];
-    $methodName = $route[1];
+// if (array_key_exists($request, $routes)) {
 
-    $controller = new $controllerName();
-    $controller->$methodName();
+//     $route = explode('@', $routes[$request]);
 
-} else {
-    echo "404 - Oldal nem található";
-}
+//     $controllerName = $route[0];
+//     $methodName = $route[1];
+
+//     $controller = new $controllerName();
+//     $controller->$methodName();
+
+// } else {
+//     echo "404 - Oldal nem található";
+// }
