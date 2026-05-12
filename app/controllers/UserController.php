@@ -10,4 +10,9 @@ class UserController {
         render('user/register');
     }
 
+    public function registerUser() {
+        
+        var_dump($_POST);
+
+    }
 }

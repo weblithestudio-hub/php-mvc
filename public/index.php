@@ -7,9 +7,22 @@ require_once __DIR__ . '/../routes/web.php';
 
 // $request = trim($_GET['url'] ?? '', '/');
 
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $method = $_SERVER['REQUEST_METHOD'];
+
+if(isset($routes[$method][$request])) {
+    list($controller, $action) = explode('@', $routes[$method][$request]);
+
+    require_once __DIR__ . '/../app/controllers/' . $controller . '.php';
+
+    $controllerInstance = new $controller;
+
+    $controllerInstance->$action();
+} else {
+    http_response_code(404);
+    echo "404 not found";
+}
 
 // // default route
 // if ($request === '') {
