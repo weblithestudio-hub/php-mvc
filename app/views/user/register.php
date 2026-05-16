@@ -2,10 +2,10 @@
     <h2 class="text-center mb-4">Register</h2>
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form action="/register" method="post">
+            <form action="/register" method="POST">
                 <div class="mb-3">
                     <label for="name" class="form-label">Full Name *</label>
-                    <input name="name" type="text" class="form-control" id="name" required>
+                    <input name="username" type="text" class="form-control" id="name" required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address *</label>
