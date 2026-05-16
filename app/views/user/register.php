@@ -2,7 +2,16 @@
     <h2 class="text-center mb-4">Register</h2>
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form action="/register" method="POST">
+            <?php if(isset($_SESSION['error'])) : ?>
+
+                <div class="alert alert-danger">
+                    <?= $_SESSION['error']; ?>
+                </div>
+
+                <?php unset($_SESSION['error']); ?>
+
+            <?php endif; ?>
+            <form action="<?php echo base_url('/user/register'); ?>" method="POST">
                 <div class="mb-3">
                     <label for="name" class="form-label">Full Name *</label>
                     <input name="username" type="text" class="form-control" id="name" required>
@@ -22,7 +31,7 @@
                 <button type="submit" class="btn btn-primary w-100">Register</button>
             </form>
             <p class="mt-3 text-center">
-                Already have an account? <a href="login.html">Login here</a>.
+                Already have an account? <a href="<?php echo base_url('/user/login'); ?>">Login here</a>.
             </p>
         </div>
     </div>

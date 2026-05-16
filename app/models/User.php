@@ -6,8 +6,17 @@ class User {
 
     public $id;
     public $username;
-    public $password;
     public $email;
+    public $password;
+    public $first_name;
+    public $last_name;
+    public $phone;
+    public $birthday;
+    public $organization;
+    public $location;
+    public $profile_image;
+    public $created_at;
+    public $updated_at;
     public $conn;
 
     public function __construct(){
@@ -17,8 +26,8 @@ class User {
     public function store(){
         $query = "INSERT INTO $this->table (username, email, password) VALUES (:username, :email, :password)";
         $stmt = $this->conn->prepare($query);
-        $this->username = htmlspecialchars(strip_tags($this->username));
-        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->username = sanitize($this->username);
+        $this->email = sanitize($this->email);
 
         $hashedPassword = password_hash($this->password, PASSWORD_BCRYPT);
         
@@ -27,6 +36,25 @@ class User {
         $stmt->bindParam(':password', $hashedPassword);
 
         if($stmt->execute()){
+            return true;
+        }
+
+        return false;
+    }
+
+    public function login(){
+        $query = "SELECT * FROM $this->table WHERE email = :email";
+        $stmt = $this->conn->prepare($query);
+
+        $this->email = sanitize($this->email);
+
+        $stmt->bindParam(':email', $this->email);
+        $stmt->execute();
+        $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
+
+        if($dbUser && password_verify($this->password, $dbUser->password)){
+            $this->id = $dbUser->id;
+            $this->username = $dbUser->username;
             return true;
         }
 

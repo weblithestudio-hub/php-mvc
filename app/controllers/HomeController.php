@@ -3,18 +3,13 @@
 class HomeController {
 
     public function index(){
-        
-        $database = Database::getInstance();
-        $conn = $database->getConnection();
 
+         $data = [
+             'title' => 'Fooldal',
+            'message' => 'Udvozollek a Fooldalon',
+         ];
 
-
-        // $data = [
-        //     'title' => 'Fooldal',
-        //     'message' => 'Udvozollek a Fooldalon',
-        // ];
-
-        // render('home/index', $data, 'layouts/hero_layout');
+         render('home/index', $data, 'layouts/hero_layout');
     }
 
     public function about(){

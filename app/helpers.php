@@ -86,3 +86,7 @@ function config($key) {
     }
     return $value;
 }
+
+function sanitize($value) {
+    return htmlspecialchars(strip_tags($value));
+}
