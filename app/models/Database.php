@@ -31,4 +31,18 @@ class Database {
 
     }
 
+    public static function getInstance(){
+        if(self::$instance == null){
+            self::$instance = new Database();
+        }
+    }
+
+    public function getConnection(){
+        return $this->connection;
+    }
+
+    private function __clone(){}
+
+    public function __wakeup(){}
+
 }

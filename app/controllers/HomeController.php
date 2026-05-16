@@ -4,7 +4,10 @@ class HomeController {
 
     public function index(){
         
-        $database = new Database();
+        $database = Database::getInstance();
+        $conn = $database->getConnection();
+
+
 
         // $data = [
         //     'title' => 'Fooldal',
