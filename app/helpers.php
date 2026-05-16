@@ -70,3 +70,19 @@ function render($view, $data = [], $layout = 'layout') {
 
     require $layoutFile;
 }
+
+function config($key) {
+
+    $config = require base_path('config/config.php');
+
+    $keys = explode('.', $key);
+    $value = $config;
+
+    foreach($keys as $k) {
+        if(!isset($value[$k])){
+            throw new Exception(message: "Config key '{$k}' not found");
+        }
+        $value = $value[$k];
+    }
+    return $value;
+}

@@ -8,16 +8,12 @@ class Database {
 
     public function __construct(){
 
-        $config = require base_path('config/config.php');
-
-        $dbConfig = $config['database'];
-
-        $host = $dbConfig['host'];
-        $dbname = $dbConfig['database'];
-        $username = $dbConfig['username'];
-        $password = $dbConfig['password'];
-        $port = $dbConfig['port'];
-        $charset = $dbConfig['charset'];
+        $host       = config('database.host');
+        $dbname     = config('database.database');
+        $username   = config('database.username');
+        $password   = config('database.password');
+        $port       = config('database.port');
+        $charset    = config('database.charset');
 
         $dsn = "mysql:host={$host};dbname={$dbname};charset={$charset};port={$port}";
 
@@ -35,6 +31,8 @@ class Database {
         if(self::$instance == null){
             self::$instance = new Database();
         }
+
+        return self::$instance;
     }
 
     public function getConnection(){
