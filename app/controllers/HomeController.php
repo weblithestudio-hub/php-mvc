@@ -4,12 +4,14 @@ class HomeController {
 
     public function index(){
         
-        $data = [
-            'title' => 'Fooldal',
-            'message' => 'Udvozollek a Fooldalon',
-        ];
+        $database = new Database();
 
-        render('home/index', $data, 'layouts/hero_layout');
+        // $data = [
+        //     'title' => 'Fooldal',
+        //     'message' => 'Udvozollek a Fooldalon',
+        // ];
+
+        // render('home/index', $data, 'layouts/hero_layout');
     }
 
     public function about(){
