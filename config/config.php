@@ -2,7 +2,7 @@
 
 return [
     'database' => [
-        'host'     => 'localhost',
+        'host'     => 'mysql',
         'database' => 'mvc_app_db',
         'username' => 'root',
         'password' => 'root',
